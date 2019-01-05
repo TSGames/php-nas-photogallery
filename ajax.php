@@ -46,7 +46,7 @@
 		else{
 			$image=$current;
 			$href="?view=".$current;
-			$thumb="image.php?src=".$image."&size=0";
+			$thumb="image.php?src=".urlencode($image)."&size=0";
 		}
 		$meta=NULL; //getMetadata(HOME."/".$image); // used for rating filter, optional
 		
