@@ -1,7 +1,7 @@
 var pswpElement = document.querySelectorAll('.pswp')[0];
 var items,allItems;
 jQuery.ajax({
-	url:"ajax.php?path="+path,
+	url:"ajax.php?path="+encodeURIComponent(path),
 	dataType:'json',
 	success: function(result){
 		items=result;

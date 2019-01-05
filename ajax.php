@@ -1,6 +1,7 @@
 <?php
 	require "common.php";
 	$path=cleanPath(@$_GET["path"]);
+	//die($path);
 	$files=@scandir(HOME."/".$path);
 	usort($files,function($a,$b){
 		global $path;
@@ -28,7 +29,7 @@
 		$items[]=["folder"=>true,
 				"title"=>"[Go up]",
 				"thumb"=>"assets/up.png",
-				"href"=>"?path=".dirname($path)
+				"href"=>"?path=".urlencode(dirname($path))
 				];
 	}
 	foreach($files as $file){
@@ -38,7 +39,7 @@
 		$thumb=NULL;
 		if(isDirectory($file)){
 			$image=NULL;
-			$href="?path=".$current;
+			$href="?path=".urlencode($current);
 			$thumb="assets/directory.png";
 			
 		}
