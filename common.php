@@ -54,7 +54,7 @@ function isDirectory($file){
 	return !strpos($file,".");
 }
 function getSize($width,$height,$max){
-	if($max<=0)
+	if($max<=0 || $width==0 || $height==0)
 		return [$width,$height];
 	if($width > $height) 
 		{

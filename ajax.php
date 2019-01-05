@@ -5,7 +5,7 @@
 	usort($files,function($a,$b){
 		global $path;
 		if(isDirectory($a) && isDirectory($b)){
-			return strcmp($a,$b);
+			return strcasecmp($a,$b);
 		}
 		if(isDirectory($a))
 			return -1;
@@ -13,32 +13,41 @@
 			return 1;
 		
 		//return strcmp($a,$b);
-		
-		$exifa=exif_read_data(HOME."/".$path."/".$a);
-		$exifb=exif_read_data(HOME."/".$path."/".$b);
-		return strcmp($exifa["DateTimeOriginal"],$exifb["DateTimeOriginal"]);
-		
+		$filea=HOME."/".$path."/".$a;
+		$fileb=HOME."/".$path."/".$a;
+		if(SORT_BY=="exifDate"){
+			$exifa=exif_read_data($filea);
+			$exifb=exif_read_data($fileb);
+			return strcmp($exifa["DateTimeOriginal"],$exifb["DateTimeOriginal"]);
+		}
+		else{
+			return strcasecmp($a,$b);
+		}
 	});
 	if(dirname($path)){
 		$items[]=["folder"=>true,
-				"title"=>"[Up]",
+				"title"=>"[Go up]",
+				"thumb"=>"assets/up.png",
 				"href"=>"?path=".dirname($path)
 				];
 	}
 	foreach($files as $file){
-		if($file=="." || $file==".." || in_array($file,$HIDE))
+		if($file=="." || $file==".." || in_array(strtolower($file),$HIDE))
 			continue;
 		$current=$path."/".$file;
+		$thumb=NULL;
 		if(isDirectory($file)){
 			$image=NULL;
 			$href="?path=".$current;
+			$thumb="assets/directory.png";
 			
 		}
 		else{
 			$image=$current;
 			$href="?view=".$current;
+			$thumb="image.php?src=".$image."&size=0";
 		}
-		$meta=getMetadata(HOME."/".$image);
+		$meta=NULL; //getMetadata(HOME."/".$image); // used for rating filter, optional
 		
 		$size=getSizeForFile(HOME."/".$image);
 		/*echo '<div class="thumb"><a href="'.$href.'" data-large-src="image.php?path='.$image.'&size=1"><img src="image.php?path='.$image.'&size=0" /><br>'.
@@ -47,8 +56,8 @@
 		*/
 		$items[]=[
 			"src"=>"image.php?src=".$image."&size=2",
-			"msrc"=>"image.php?src=".$image."&size=1",
-			"thumb"=>"image.php?src=".$image."&size=0",
+			//"msrc"=>"image.php?src=".$image."&size=1",
+			"thumb"=>$thumb,
 			"w"=>$size[0],
 			"h"=>$size[1],
 			"title"=>$file,

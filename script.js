@@ -18,8 +18,11 @@ jQuery.ajax({
 function loadGallery(){
 	jQuery(".container").empty();
 	jQuery(".glyphicon").hide(500);
+	if(!items || items.length==0){
+		jQuery(".container").append('<div class="empty">Whoops. No images were found. Please check your config.php and set a directory that contains your library.</div>');		
+	}
 	for(var i=0;i<items.length;i++){
-		var href="javascript:openImage('"+i+"')";
+		var href="javascript:openImage("+i+")";
 		if(items[i].folder){
 			href=items[i].href;
 		}
@@ -40,7 +43,7 @@ function filterRating(rating){
 
 function openImage(pos){
 	var options = {
-		index: Number(pos), // start at first slide
+		index: Number(pos),
 		closeOnScroll: false,
 		mouseUsed: true,
 		history: true,

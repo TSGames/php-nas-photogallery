@@ -28,11 +28,24 @@
 	height:<?php echo THUMB_SIZE+40; ?>;
 	overflow:hidden;
 }
+.container div img{
+	width:<?php echo THUMB_SIZE; ?>;
+	height:<?php echo THUMB_SIZE; ?>;
+}
+.container .empty{
+	padding-top:40%;
+	overflow:visible;
+	width:100%;
+	color:#ccc;	
+}
+.pswp__caption__center{
+	text-align:center;
+}
 body{
 	background:#111;
 }
 a{
-	color:#ddd;
+	color:#ccc;
 }
 a:hover{
 	color:#fff;
@@ -131,7 +144,7 @@ a:hover{
     </div>
 
 </div>
-<nav class="navbar navbar-default">
+<!--<nav class="navbar navbar-default">
 <div class="container-fluid">
 <div class="navbar-header">
 <form class="form-inline" role="form">
@@ -148,7 +161,7 @@ a:hover{
 </form>
 </div>
 </div>
-</nav>
+</nav>-->
 <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 <div class="container"></div>
 <?php
