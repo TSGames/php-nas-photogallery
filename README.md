@@ -15,3 +15,10 @@ Also, some common raw formats (Canon, Nikon, Sony) are supported, if they contai
 - Installation
 Simply clone the git repository into your apache html folder. Alternatively, download as a zip file and extract is.
 Check the config.php for path configuration of your image folder.
+
+# Screenshots
+
+The layout is pretty minimalistic and uses Photoswipe: https://github.com/dimsemenov/PhotoSwipe
+
+![](http://torsten-simon.de/pub/photogallery/gallery1.PNG)
+![](http://torsten-simon.de/pub/photogallery/gallery2.PNG)
