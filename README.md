@@ -20,5 +20,5 @@ Check the config.php for path configuration of your image folder.
 
 The layout is pretty minimalistic and uses Photoswipe: https://github.com/dimsemenov/PhotoSwipe
 
-![](http://torsten-simon.de/pub/photogallery/gallery1.PNG)
-![](http://torsten-simon.de/pub/photogallery/gallery2.PNG)
+![](http://torsten-simon.de/pub/photogallery/gallery1.jpg)
+![](http://torsten-simon.de/pub/photogallery/gallery2.jpg)
