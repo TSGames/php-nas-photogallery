@@ -56,7 +56,7 @@
 		<br>'.$file.'</a></div>';
 		*/
 		$items[]=[
-			"src"=>"image.php?src=".$image."&size=2",
+			"src"=>"image.php?src=".urlencode($image)."&size=2",
 			//"msrc"=>"image.php?src=".$image."&size=1",
 			"thumb"=>$thumb,
 			"w"=>$size[0],

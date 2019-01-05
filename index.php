@@ -24,13 +24,13 @@
 	float:left;
 	padding:2px;
 	text-align:center;
-	width:<?php echo THUMB_SIZE; ?>;
-	height:<?php echo THUMB_SIZE+40; ?>;
+	width:<?php echo THUMB_SIZE; ?>px;
+	height:<?php echo THUMB_SIZE+30; ?>px;
 	overflow:hidden;
 }
 .container div img{
-	width:<?php echo THUMB_SIZE; ?>;
-	height:<?php echo THUMB_SIZE; ?>;
+	width:<?php echo THUMB_SIZE; ?>px;
+	height:<?php echo THUMB_SIZE; ?>px;
 }
 .container .empty{
 	padding-top:40%;
