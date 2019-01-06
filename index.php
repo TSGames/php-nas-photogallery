@@ -39,6 +39,13 @@
 	overflow:hidden;
 	word-break:break-all;
 }
+.container{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 .container div img{
 
 }
