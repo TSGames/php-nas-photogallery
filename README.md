@@ -12,7 +12,7 @@ Also, some common raw formats (Canon, Nikon, Sony) are supported, if they contai
 - Dual Core CPU
 - 1GB RAM (2 GB recommended, may works with less, but will result in slow conversion)
 
-- Installation
+# Installation
 Simply clone the git repository into your apache html folder. Alternatively, download as a zip file and extract is.
 Check the config.php for path configuration of your image folder.
 
