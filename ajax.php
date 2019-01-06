@@ -50,17 +50,16 @@
 		}
 		$meta=NULL; //getMetadata(HOME."/".$image); // used for rating filter, optional
 		
-		$size=getSizeForFile(HOME."/".$image);
+		//$size=getSizeForFile(HOME."/".$image);
 		/*echo '<div class="thumb"><a href="'.$href.'" data-large-src="image.php?path='.$image.'&size=1"><img src="image.php?path='.$image.'&size=0" /><br>'.
 		$meta["rating"].'
 		<br>'.$file.'</a></div>';
 		*/
 		$items[]=[
 			"src"=>"image.php?src=".urlencode($image)."&size=2",
-			//"msrc"=>"image.php?src=".$image."&size=1",
+			"size"=>"image.php?src=".urlencode($image)."&reportSize=true",
+			"msrc"=>$thumb,
 			"thumb"=>$thumb,
-			"w"=>$size[0],
-			"h"=>$size[1],
 			"title"=>$file,
 			"folder"=>$image==NULL,
 			"href"=>$href,

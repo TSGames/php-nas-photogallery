@@ -15,22 +15,32 @@
 <link rel="stylesheet" href="photoswipe/default-skin/default-skin.css"> 
 <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 <!-- Core JS file -->
-<script src="photoswipe/photoswipe.min.js"></script> 
+<script src="photoswipe/photoswipe.js"></script> 
 
 <!-- UI JS file -->
 <script src="photoswipe/photoswipe-ui-default.min.js"></script>
 <style>
+.config{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eee;
+    padding: 10px;
+    background: #222;	
+}
+.config select{
+	margin-left:5px;
+	color:#444;
+}
 .container div{
 	float:left;
 	padding:2px;
 	text-align:center;
-	width:<?php echo THUMB_SIZE; ?>px;
-	height:<?php echo THUMB_SIZE+30; ?>px;
 	overflow:hidden;
+	word-break:break-all;
 }
 .container div img{
-	width:<?php echo THUMB_SIZE; ?>px;
-	height:<?php echo THUMB_SIZE; ?>px;
+
 }
 .container .empty{
 	padding-top:40%;
@@ -47,7 +57,7 @@ body{
 a{
 	color:#ccc;
 }
-a:hover{
+a:hover,a:active{
 	color:#fff;
 }
 .glyphicon{
@@ -143,6 +153,17 @@ a:hover{
 
     </div>
 
+</div>
+<div class="config">
+	Preview Size: 
+		<select id="size" onchange="updateSize()">
+		<option value="60">X-Small</option>
+		<option value="80">Small</option>
+		<option value="120">Medium</option>
+		<option value="160">Large</option>
+		<option value="240">X-Large</option>
+		<option value="400">XX-Large</option>
+		</select>
 </div>
 <!--<nav class="navbar navbar-default">
 <div class="container-fluid">

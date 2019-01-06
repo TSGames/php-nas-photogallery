@@ -1,5 +1,6 @@
 <?php
 ini_set("memory_limit","1000M");
+set_time_limit(300);
 require "config.php";
 function cleanPath($path){
 	return str_replace(array('.\\','./','..'),'',$path);
@@ -15,7 +16,8 @@ function getMetadata($path){
 	return $data;
 }
 function getRaw($path,$thumb=true){
-	$content = file_get_contents($path);
+	// limit size, otherwise some files like videos may cause performance issues
+	$content = file_get_contents($path,false,NULL,0,2*1024*1024);
 	for($i=0;$i<5;$i++){
 		$content=strstr(substr($content,2),chr(0xff).chr(0xd8));
 		
