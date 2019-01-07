@@ -39,7 +39,7 @@ function loadGallery(){
 			items.push(allItems[i]);
 			href="javascript:openImage("+(items.length-1)+")";
 		}
-		jQuery(".container").append('<div style="width:'+size+'px;height:'+(parseInt(size)+27)+'px;"><a href="'+href+'"><img  style="width:'+size+'px;height:'+size+'px;" src="'+allItems[i].thumb+'"><br>'+allItems[i].title+'</a></div>');
+		jQuery(".container").append('<div style="width:'+size+'px;height:'+(parseInt(size)+25)+'px;"><a href="'+href+'"><img  style="width:'+size+'px;height:'+size+'px;" src="'+allItems[i].thumb+'"><br>'+allItems[i].title+'</a></div>');
 	}
 
 }
