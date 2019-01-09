@@ -1,10 +1,14 @@
 <?php
 	require("common.php");
 	function outputImage($img,$quality){
-		if(IMAGE_FORMAT=="jpeg")
+		if(IMAGE_FORMAT=="jpeg"){
+			header('Content-Type: image/jpeg');		
 			imagejpeg($img,NULL,$quality);
-		else if(IMAGE_FORMAT=="webp")
+		}
+		else if(IMAGE_FORMAT=="webp"){
+			header('Content-Type: image/webp');		
 			imagewebp($img,NULL,$quality);
+		}
 		else
 			throw new Exception("Unsupported image format ".IMAGE_FORMAT);
 		imagedestroy($img);
@@ -15,7 +19,6 @@
 		die();
 	}
 	$size=@$_GET["size"];
-	header('Content-Type: image/jpeg');
 	if($size<2 && THUMB_EXIF_THUMBNAIL){
 		$data=exif_thumbnail($path);
 		if($data){

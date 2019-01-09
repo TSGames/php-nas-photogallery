@@ -18,17 +18,22 @@ function getMetadata($path){
 function getRaw($path,$thumb=true){
 	// limit size, otherwise some files like videos may cause performance issues
 	$content = file_get_contents($path,false,NULL,0,2*1024*1024);
-	for($i=0;$i<5;$i++){
+	for($i=0;$i<100;$i++){
 		$content=strstr(substr($content,2),chr(0xff).chr(0xd8));
 		
 		$img=@imagecreatefromstring($content);
 		if(@imagesx($img) && $thumb)
 			return $img;
-		$images[]=["img"=>$img,"size"=>@imagesx($img)*@imagesy($img)];
+		$size=@imagesx($img)*@imagesy($img);
+		$images[]=["img"=>$img,"size"=>$size];
+		if($size>500000)
+			break;
 	}
 	usort($images,function($a,$b){
-		return $a["size"]<$b["size"]?$a:$b;
+		return $a["size"]<$b["size"]?1:-1;
 	});
+	//print_r($images);
+	//die();
 	return $images[0]["img"];
 }
 function parseXMP($xmp,$node){
