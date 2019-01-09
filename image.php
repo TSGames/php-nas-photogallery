@@ -1,5 +1,14 @@
 <?php
 	require("common.php");
+	function outputImage($img,$quality){
+		if(IMAGE_FORMAT=="jpeg")
+			imagejpeg($img,NULL,$quality);
+		else if(IMAGE_FORMAT=="webp")
+			imagewebp($img,NULL,$quality);
+		else
+			throw new Exception("Unsupported image format ".IMAGE_FORMAT);
+		imagedestroy($img);
+	}
 	$path=HOME.'/'.cleanPath(@$_GET["src"]);
 	if(@$_GET["reportSize"]){
 		echo json_encode(getSizeForFile($path));
@@ -7,7 +16,7 @@
 	}
 	$size=@$_GET["size"];
 	header('Content-Type: image/jpeg');
-	if($size<2){
+	if($size<2 && THUMB_EXIF_THUMBNAIL){
 		$data=exif_thumbnail($path);
 		if($data){
 			$img=@imagecreatefromstring($data);
@@ -36,30 +45,17 @@
 		$thumb = imagecreatetruecolor(THUMB_SIZE, THUMB_SIZE);
 		imagecopyresized($thumb, $img, 0, 0, $x, $y, THUMB_SIZE, THUMB_SIZE, $smallestSide, $smallestSide);
 
-		imagejpeg($thumb,NULL,THUMB_QUALITY);
+		outputImage($thumb,THUMB_QUALITY);
 	}
-	else if($size==1){
-		
-		/*list($thumb_w,$thumb_h)=getSize($width,$height,PREVIEW_SIZE);
-		$thumb        =   ImageCreateTrueColor($thumb_w,$thumb_h);
-
-		imagecopyresized($thumb,$img,0,0,0,0,$thumb_w,$thumb_h,$width,$height); */
-		imagejpeg($img,NULL,QUALITY);
-
+	$max_size=$size==1 ? THUMB_SIZE : FULL_SIZE;
+	$quality=$size==1 ? THUMB_QUALITY : FULL_SIZE_QUALITY;
+	if($max_size>0){
+		list($thumb_w,$thumb_h)=getSize($width,$height,$max_size);
+		$thumb  =   ImageCreateTrueColor($thumb_w,$thumb_h);
+		imagecopyresized($thumb,$img,0,0,0,0,$thumb_w,$thumb_h,$width,$height); 
+		outputImage($thumb,$quality);
 	}
 	else{
-		if(FULL_SIZE>0){
-			list($thumb_w,$thumb_h)=getSize($width,$height,FULL_SIZE);
-			$thumb  =   ImageCreateTrueColor($thumb_w,$thumb_h);
-			imagecopyresized($thumb,$img,0,0,0,0,$thumb_w,$thumb_h,$width,$height); 
-			imagejpeg($thumb,NULL,FULL_SIZE_QUALITY);
-		}
-		else{
-			imagejpeg($img,NULL,FULL_SIZE_QUALITY);			
-		}
+		outputImage($img,$quality);			
 	}
-	imagedestroy($thumb);
-	imagedestroy($img);
-
-
 ?>

@@ -58,7 +58,7 @@
 		$items[]=[
 			"src"=>"image.php?src=".urlencode($image)."&size=2",
 			"size"=>"image.php?src=".urlencode($image)."&reportSize=true",
-			"msrc"=>$thumb,
+			"msrc"=>"image.php?src=".urlencode($image)."&size=1",
 			"thumb"=>$thumb,
 			"title"=>$file,
 			"folder"=>$image==NULL,

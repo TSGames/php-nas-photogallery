@@ -60,13 +60,13 @@ function getSize($width,$height,$max){
 		return [$width,$height];
 	if($width > $height) 
 		{
-			$thumb_w    =   $max;
-			$thumb_h    =   $height*($max/$width);
+			$thumb_w    =   $max<$width ? $max : $width;
+			$thumb_h    =   $height*($thumb_w/$width);
 		}
 		else 
 		{
-			$thumb_w    =   $width*($max/$height);
-			$thumb_h    =   $max;
+			$thumb_h    =   $max<$height ? $max : $height;
+			$thumb_w    =   $width*($thumb_h/$height);
 		}
 	return [$thumb_w,$thumb_h];
 	}
