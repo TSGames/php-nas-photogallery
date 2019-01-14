@@ -5,6 +5,8 @@
 	$files=@scandir(HOME."/".$path);
 	usort($files,function($a,$b){
 		global $path;
+		$a=HOME."/".$path."/".$a;
+		$b=HOME."/".$path."/".$b;
 		if(isDirectory($a) && isDirectory($b)){
 			return strcasecmp($a,$b);
 		}
@@ -37,7 +39,7 @@
 			continue;
 		$current=$path."/".$file;
 		$thumb=NULL;
-		if(isDirectory($file)){
+		if(isDirectory(HOME."/".$current)){
 			$image=NULL;
 			$href="?path=".urlencode($current);
 			$thumb="assets/directory.png";

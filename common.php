@@ -17,7 +17,7 @@ function getMetadata($path){
 }
 function getRaw($path,$thumb=true){
 	// limit size, otherwise some files like videos may cause performance issues
-	$content = file_get_contents($path,false,NULL,0,2*1024*1024);
+	$content = file_get_contents($path,false,NULL,0,10*1024*1024);
 	for($i=0;$i<100;$i++){
 		$content=strstr(substr($content,2),chr(0xff).chr(0xd8));
 		
@@ -58,7 +58,10 @@ function getSizeForFile($path){
 	return getSize(imagesx($img),imagesy($img),FULL_SIZE);
 }
 function isDirectory($file){
-	return !strpos($file,".");
+	//$content = file_get_contents($file,false,NULL,0,1);
+	//return !$content;
+	//return !strpos($file,".");
+	return is_dir($file);
 }
 function getSize($width,$height,$max){
 	if($max<=0 || $width==0 || $height==0)
