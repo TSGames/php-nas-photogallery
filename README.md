@@ -9,7 +9,7 @@ Also, some common raw formats (Canon, Nikon, Sony) are supported, if they contai
 
 # Requirements
 - PHP 7 or greater
-- Dual Core CPU
+- Dual Core CPU (Quad Core recommended)
 - 1GB RAM (2 GB recommended, may works with less, but will result in slow conversion)
 
 # Installation
